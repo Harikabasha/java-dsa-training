@@ -1,0 +1,103 @@
+abstract class Movie{
+    String movieid,title;
+    double ticketprice;
+    int noOftickets;
+    Movie(String id,String titt,double tp,int nt){
+       movieid=id;
+       title=titt;
+    ticketprice=tp;
+    noOftickets=nt; 
+    }
+    abstract double calculatePrice();
+        
+    
+    void displayDetails(){
+        System.out.println("movieid:"+movieid);
+        System.out.println("tittle:"+title);
+        System.out.println("ticketprice:"+ticketprice);
+        System.out.println("number of tickets:"+noOftickets);
+       
+    
+    if(noOftickets>6){
+        System.out.println("booking cancelled");
+    }else{
+        double total=calculatePrice();
+        System.out.println("totalcost:"+total);
+    }
+    }
+    
+}
+
+class TeluguMovie extends Movie{
+    TeluguMovie(String id,String titt,double tp,int nt){
+        super(id,titt,tp,nt);
+        
+    }
+    @Override
+      double calculatePrice(){
+        double totalcost=ticketprice*noOftickets;
+        double gst=totalcost*0.05;
+        double finalcost=totalcost+gst;
+        return finalcost;
+    }
+}
+
+class HindiMovie extends Movie{
+    HindiMovie(String id,String titt,double tp,int nt){
+        super(id,titt,tp,nt);
+        
+    }
+    @Override
+      double calculatePrice(){
+        double totalcost=ticketprice*noOftickets;
+        double discount=totalcost-totalcost*0.10;
+        
+        double gst=discount*0.05;
+        double finalcost=discount+gst;
+        return finalcost;
+    }
+}
+
+class EnglishMovie extends Movie{
+    EnglishMovie(String id,String titt,double tp,int nt){
+        super(id,titt,tp,nt);
+        
+    }
+    @Override
+      double calculatePrice(){
+        double totalcost=(ticketprice+50)*noOftickets;
+       
+        
+        double gst=totalcost*0.05;
+        double finalcost=totalcost+gst;
+        return finalcost;
+    }
+}
+
+public class Main{
+    public static void main(String[] args){
+        Movie m;
+        System.out.println("Movie Record");
+        m=new TeluguMovie("M"+101,"RRR",150,3);
+        m.calculatePrice();
+        m.displayDetails();
+        System.out.println();
+        System.out.println("Movie Record");
+        m=new HindiMovie("M"+102,"Pathaan",200,2);
+        m.calculatePrice();
+        m.displayDetails();
+        System.out.println();
+        System.out.println("Movie Record");
+        m=new EnglishMovie("M"+103,"Avatar",250,7);
+        m.calculatePrice();
+        m.displayDetails();
+    }
+}
+
+
+
+
+
+
+
+

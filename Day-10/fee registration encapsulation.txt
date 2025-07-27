@@ -1,0 +1,71 @@
+class Participant {
+    private int participantId;
+    private int noOfEvents;
+    private String name;
+    private double baseRegistrationFee;
+    private double ePerEvent;
+
+    public void SetParticipantid(int p) {
+        participantId = p;
+    }
+
+    public void Setname(String n) {
+        name = n;
+    }
+
+    public void Setbaseregistrationfee(double b) {
+        baseRegistrationFee = b;
+    }
+
+    public void Setnoofevents(int ne) {
+        noOfEvents = ne;
+    }
+
+    public void SetePerEvent(double ce) {
+        ePerEvent = ce;
+    }
+
+    public int getParticipantid() {
+        return participantId;
+    }
+
+    public String getname() {
+        return name;
+    }
+
+    public double getbaseregistrationfee() {
+        return baseRegistrationFee;
+    }
+
+    public int getnoofevents() {
+        return noOfEvents;
+    }
+
+    public double getePerEvent() {
+        return ePerEvent;
+    }
+
+    public double calculateTotalFee() {
+        return baseRegistrationFee + (noOfEvents * ePerEvent);
+    }
+
+    void display() {
+        System.out.println("Participant ID: " + participantId);
+        System.out.println("Name: " + name);
+        System.out.printf("Base Registration Fee: %.2f\n", baseRegistrationFee);
+        System.out.printf("Event Charges: %d events @ %.2f/event\n", noOfEvents, ePerEvent);
+        System.out.printf("Total Fee: %.2f\n", calculateTotalFee());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Participant par = new Participant();
+        par.SetParticipantid(501);
+        par.Setname("Rahul");
+        par.Setbaseregistrationfee(200);
+        par.Setnoofevents(3);
+        par.SetePerEvent(100);
+        par.display();
+    }
+}
